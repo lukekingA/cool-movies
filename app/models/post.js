@@ -45,7 +45,7 @@ export default class Post {
         </div>
       </div>
       <form class="form-group" onsubmit="app.controllers.postController.addPost(event)" hidden>
-        <input type="text" name="comment" placeholder="add comment here">
+        <input type="text" maxlength="300" name="comment" placeholder="add comment here">
         <div class="d-flex justify-content-end">
           <button class="mr-1 btn btn-sm" onclick="app.controllers.postController.cancelPostEntry()">Cancel</button>
           <button class="btn btn-sm" type="submitt"></button>

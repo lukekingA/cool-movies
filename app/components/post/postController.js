@@ -6,13 +6,55 @@ import PostService from "./postService.js";
 //private
 let _ps = new PostService()
 
-function drawPost() {
-
+function drawComments(post) {
+  let template = ''
+  let postorder = []
+  for (let comment in post) {
+    postorder.push(post[comment])
+  }
+  postorder.sort((a, b) => a.date - b.date)
+  postorder.forEach(c => {
+    template += `
+    <div>
+    <div class="d-flex justify-content-between">
+      <span>${c.user.username}</span>
+      <span>${c.createdAt}</span>
+    </div>
+    <p>${c.content}</p>
+    <div>
+    <span>${c.upvotes}</span> <span><i onclick="app.controllers.postController.upVote('${c._id}')" class="fas fa-arrow-alt-circle-up"></i></span>
+    <span>${c.downvotes}</span> <span><i onclick="app.controllers.postController.downVote('${c._id}')" class="fas fa-arrow-alt-circle-down"></i></span>
+    </div>
+    `
+  })
 }
+
+function drawMainPost(id) {
+  let post = _ps.Posts.filter(p => {
+    return p._id == id
+  })
+  let template = '<div class="col col-sm-6 offset-sm-3">'
+  template += post[0].PostMainTemplate
+  template += '</div>'
+  document.querySelector('body').innerHTML = template
+  drawComments(post)
+}
+
+function drawPosts() {
+  let template = '<div class="col col-sm-4">'
+  _ps.Posts.forEach(p => {
+    template += p.PostMiniTemplate
+  })
+  template += '</div>'
+  document.querySelector('#posts').innerHTML = template
+}
+
 
 //public
 export default class PostController {
   constructor() {
     console.log('postController Built')
+    _ps.addSubscriber('post', drawPosts)
+
   }
 }

@@ -15,5 +15,6 @@ function drawUser() {
 export default class UserController {
   constructor() {
     console.log('userController Built')
+
   }
 }

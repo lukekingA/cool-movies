@@ -13,6 +13,16 @@
 </head>
 
 <body class="container-fluid">
+  <header class="row">
+    <form onsubmit="app.controllers.postController.addPost(event)" hidden>
+      <input type="text" name="title" placeholder="Movie title here" required>
+      <input type="text" name="description" placeholder="Add a short comment">
+      <input type="url" name="url" required>
+    </form>
+  </header>
+  <main id="posts" class="row">
+    <!-- posts here -->
+  </main>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>

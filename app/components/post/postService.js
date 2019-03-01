@@ -3,15 +3,16 @@ import Post from '../../models/post.js'
 
 //private
 let _apiComments = axios.create({
-  baseURL: ''
+  baseURL: '/'
 })
 
 let _state = {
+  posts: []
 
 }
 
 let _subcribers = {
-
+  posts: []
 }
 
 function setState(prop, val) {
@@ -27,4 +28,10 @@ export default class PostService {
   addSubscriber(prop, fn) {
     _subcribers[prop].push(fn)
   }
+
+  get Posts() {
+    return _state.posts.map(p => new Post(p))
+  }
+
+
 }
