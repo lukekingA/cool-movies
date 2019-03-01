@@ -6,9 +6,9 @@ export default class Post {
       this.description = data.description,
       this.upvotes = data.upvotes,
       this.downvotes = data.downvotes,
-      this.date = data.date,
+      this.createdAt = data.createdAt,
       this.comment = data.comment,
-      this.username = data.username
+      this.userId = data.userId
   }
 
   get PostMiniTemplate() {
@@ -32,8 +32,8 @@ export default class Post {
       <div class="d-flex justify-content-between">
         <h6 class="card-subtitle mb-2 text-muted">${this.description} </h6>
         <div class="d-flex justify-content-between">
-          <span><small>posted by</small>${this.username}</span>
-          <span>${this.date}</span>>
+          <span><small>posted by</small>${this.userId.username}</span>
+          <span>${this.createdAt}</span>>
         </div>
         <div class="d-flex justtify-content-between">
           <button onclick="app.controllers.postController.showCommentForm('${this._id}')"></button>

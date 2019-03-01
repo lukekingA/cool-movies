@@ -15,16 +15,40 @@ function drawComments(post) {
   postorder.sort((a, b) => a.date - b.date)
   postorder.forEach(c => {
     template += `
-    <div>
+    <li>
     <div class="d-flex justify-content-between">
       <span>${c.user.username}</span>
       <span>${c.createdAt}</span>
     </div>
-    <p>${c.content}</p>
     <div>
-    <span>${c.upvotes}</span> <span><i onclick="app.controllers.postController.upVote('${c._id}')" class="fas fa-arrow-alt-circle-up"></i></span>
-    <span>${c.downvotes}</span> <span><i onclick="app.controllers.postController.downVote('${c._id}')" class="fas fa-arrow-alt-circle-down"></i></span>
+      <p>${c.content}</p>
+      <div class="d-flex justify-content-betwween">
+        <div>
+          <span>${c.upvotes}</span> <span><i onclick="app.controllers.postController.upVote('${c._id}')" class="fas fa-arrow-alt-circle-up"></i></span>
+        </div>
+        <div>
+          <span>${c.downvotes}</span> <span><i onclick="app.controllers.postController.downVote('${c._id}')" class="fas fa-arrow-alt-circle-down"></i></span>
+        </div>
+      </div>
+      <ul>
+        <li>`
+    c.subcomments.forEach(sc => {
+      template +=
+        ` <p>${sc.content}</p>
+              <div class="d-flex justify-content-betwween">
+                <div>
+                  <span>${sc.upvotes}</span> <span><i onclick="app.controllers.postController.upVote('${sc._id}')" class="fas fa-arrow-alt-circle-up"></i></span>
+                </div>
+                <div>
+                  <span>${sc.downvotes}</span> <span><i onclick="app.controllers.postController.downVote('${sc._id}')" class="fas fa-arrow-alt-circle-down"></i></span>
+                </div>
+              </div>
+            </li>`
+    })
+    template +=
+      `</ul>
     </div>
+  </li>
     `
   })
 }
