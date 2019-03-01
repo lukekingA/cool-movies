@@ -2,6 +2,10 @@
 import User from '../../models/user.js'
 
 //private
+let _apiComments = axios.create({
+  baseURL: ''
+})
+
 let _state = {
 
 }

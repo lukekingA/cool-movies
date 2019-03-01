@@ -2,6 +2,10 @@
 import Comment from '../../models/comment.js'
 
 //private
+let _apiComments = axios.create({
+  baseURL: ''
+})
+
 let _state = {
 
 }
