@@ -2,6 +2,10 @@
 import Post from '../../models/post.js'
 
 //private
+let _apiComments = axios.create({
+  baseURL: ''
+})
+
 let _state = {
 
 }
