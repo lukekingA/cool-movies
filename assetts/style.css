@@ -1,0 +1,4 @@
+.overflowHidden {
+  overflow-y: auto;
+  max-height: 10rems;
+}
